@@ -43,5 +43,11 @@ plt.title('dot pattern for BOS.  dot size = '+str(dotSize)+' px, percent coverag
 
 
 #%% save image
-filename = 'BOS_' + str(width) + 'x'+ str(height) + '_'+str(-shift*2) +'.jpg'
-scipy.misc.imsave(filename, Ye)
+# include the date in the filename.  figure out how to do that later.
+#from datetime import date
+# today = date.today()
+
+filename = 'dot_background_'+ str() + str(dotSize) + 'px_'+str(percentCoverage) +'%.jpg'
+scipy.misc.imsave('background_images/dots/' + filename, Ye)
+output = 'file saved as: '+ filename
+print(output)

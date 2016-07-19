@@ -2,6 +2,7 @@
 """
 author: Jonathan Gross
 This script is to practice using various functions
+If it doesn't work, try using the files in '2016-07-14 0.5mm periodic pattern/'
 """
 
 import numpy as np

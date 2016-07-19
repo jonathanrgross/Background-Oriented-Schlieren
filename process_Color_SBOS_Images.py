@@ -147,7 +147,7 @@ for x in range(nFrames):
 
 #plt.figure()
 gausFig = plt.figure()
-plt.imshow(gIout[:,:,1], cmap='gray', vmin=min(gIout[:,:,1].ravel()), vmax=max(gIout[:,:,1].ravel()))
+plt.imshow(gIout[:,:,0], cmap='gray', vmin=min(gIout[:,:,0].ravel()), vmax=max(gIout[:,:,0].ravel()))
 plt.title('output of S-BOS method with gaussian filter')
 
 

@@ -79,6 +79,7 @@ plt.draw()
 plt.show()
 fig2=plt.figure()
 plt.close(fig2)
+plt.title('color S-BOS background image')
 
 
 #%% prompt user in the console to choose whether to save
@@ -87,11 +88,11 @@ print('suggested filename: ' + filename)
 print('press enter to accept, or type a new name to change it.  press space then enter to skip.')
 userInput = raw_input()
 if len(userInput) == 0:
-    scipy.misc.imsave(filename, img)
+    scipy.misc.imsave('../background_images/plaid/'+filename, img)
     print('file saved as ' + filename)
 elif len(userInput) == 1:
     print('you have chosen not to save the file')
 elif len(userInput) > 1:
     print('input desired filename.  be sure to include a file extention')
-    scipy.misc.imsave(userInput, img)
+    scipy.misc.imsave('../background_images/plaid/'+userInput, img)
     print('file saved as ' + userInput)
