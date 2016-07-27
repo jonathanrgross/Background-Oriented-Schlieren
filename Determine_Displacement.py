@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 author: Jonathan Gross
 This script is to practice using various functions
@@ -10,14 +9,15 @@ import cv2
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import time
-
 from matplotlib import pyplot as plt
 from Tkinter import Tk
 from tkFileDialog import askopenfilenames, askopenfilename
 import tkMessageBox
-
 from scipy.signal import kaiserord, lfilter, firwin, freqz
 
+
+#--------------------------------------------------------------------------
+# function to apply the S-BOS algorithm
 def performBOS(image, Iref, orientation):
     img = cv2.imread(image)
     Iimg = img[:,:,0]
@@ -43,15 +43,14 @@ def performBOS(image, Iref, orientation):
     # add something to save image
     return Iout
 
-# open a dialog box and select an image
+#--------------------------------------------------------------------------
+# select images
 Tk().withdraw()
 file_opt = options = {}
 options['initialdir'] = '/home/jack/Pictures'
 options['title'] = 'Select an image to process'
 ImgFilename = askopenfilenames(**file_opt)
 
-
-# open a dialog box and select reference image
 Tk().withdraw()
 file_opt = options = {}
 options['filetypes'] = [('all files', '.*'), ('portable neytwork graphics', '.png'), 
@@ -68,7 +67,8 @@ plt.imshow(refImg[:,:,1], cmap='gray')
 orientation = 'H'
 
 
-#%% add a while loop to go through each image
+#--------------------------------------------------------------------------
+# process each image
 height,width,channels = refImg.shape
 nFrames = len(ImgFilename)
 appendedResults = np.zeros([height,width,nFrames])
@@ -76,11 +76,10 @@ for x in range(nFrames):
     print('processing image ' + str(x))
     Iout = performBOS(ImgFilename[x], refImg[:,:,1], orientation)
     appendedResults[:,:,x] = Iout
-    #plt.figure()
-    #plt.imshow(Iout, cmap='gray')    
 
 
-#%% find wavelength of background pattern
+#--------------------------------------------------------------------------
+# find wavelength of background pattern
 BGwaveform = refImg[400:2400,round(height/2),1]
 fftOut = np.fft.fft(BGwaveform, n=None, axis=-1, norm=None)
 
@@ -95,7 +94,9 @@ for i in range(2,len(yf)):
 
 BGpatternWavelength = 1/xf[maxIndex]
 
-#%% apply gaussian filter based on wavelength of background pattern
+
+#--------------------------------------------------------------------------
+# apply gaussian filter based on wavelength of background pattern
 import scipy
 sigma = BGpatternWavelength/1.5
 gIout = np.zeros([height,width,nFrames])
@@ -109,7 +110,8 @@ plt.imshow(gIout[:,:,1], cmap='gray', vmin=min(gIout[:,:,1].ravel()), vmax=max(g
 plt.title('output of S-BOS method with gaussian filter')
 
 
-#%% ask user if they would like to save files
+#--------------------------------------------------------------------------
+# save processed images
 saveChoice = tkMessageBox.askyesno('Save results?','Would you like to save the images?')
 if saveChoice:
     for x in range(nFrames):

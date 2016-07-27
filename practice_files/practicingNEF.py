@@ -2,10 +2,20 @@
 """
 Created on Fri Jul 15 18:56:21 2016
 @author: jack
-I'm learning how to use NEF (Nikon Electronic Format) to separate color channels
+I'm learning how to use NEF (Nikon Electronic Format) to separate color 
+channels.  This code allows the user to select a file, which is then broken 
+into three arrays corresponding to the three color channels of the original 
+file.
 """
 
 import rawpy
+
+# it can't find rawpy.  I think its because its not using the files installed 
+# in the virtual environment.  To see the paths of the imported modules, use:
+# import sys
+# for path in sys.path:
+#    print(path)
+
 import imageio
 import matplotlib.pyplot as plt
 import numpy as np

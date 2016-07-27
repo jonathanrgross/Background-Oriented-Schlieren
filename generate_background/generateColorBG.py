@@ -45,8 +45,8 @@ def generateBackgroundImage(width,height,N,waveform,orientation):
 #%% generate background that will be assigned to first color channel
 width=1920                                                                      # select width
 height=1080                                                                     # select height
-wavelength1 = 6                                                                 # select wavelength
-waveform1='sq'                                                                   # select waveform
+wavelength1 = 10                                                                 # select wavelength
+waveform1='sin'                                                                   # select waveform
 orientation1='V'                                                                # select orientation
 if orientation1 == 'H':
     N1 = height/wavelength1
@@ -69,12 +69,12 @@ q2 = bg.generateBackgroundImage(width,height,N2,waveform2,orientation2)
 #%% assemble the two backgrounds to one RGB image
 img = np.zeros((height-1,width-1,3))
 img[:,:,0]=q1/2+0.5
-img[:,:,2]=q2/2+0.5
+#img[:,:,2]=q2/2+0.5
 
 
 #%% disply the background
 fig1=plt.figure()
-plt.imshow(img)
+plt.imshow(img,cmap='gray')
 plt.draw()
 plt.show()
 fig2=plt.figure()

@@ -16,7 +16,8 @@ import cv2
 # read images in.  add something to let the user select the images from a dialog
 frame_a  = openpiv.tools.imread( '/home/jack/Pictures/dots1.jpg' )
 frame_b  = openpiv.tools.imread( '/home/jack/Pictures/dots1rot.jpg' )
-#frame_b = cv2.imread('tsukuba_l.png',0)
+
+# use logical indexing to set upper limit on brightness
 frame_b[frame_b > 200] = 0
 
 #%% use contrast limited adaptive histogram equalization (CLAHE)

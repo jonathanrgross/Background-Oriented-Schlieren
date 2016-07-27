@@ -17,12 +17,12 @@ from scipy.signal import kaiserord, lfilter, firwin, freqz
 
 
 # define dimensions
-width=1920                                                                      # select width
-height=1080  
+width=256                                                                      # select width
+height=256  
 
 y = np.random.rand(height,width)
 # select percent of the space to have dots
-percentCoverage = 2
+percentCoverage = 8
 shift = (percentCoverage-50.)/100.
 print(shift)
 Y = np.around(y+shift)
@@ -34,7 +34,7 @@ plt.title('dot pattern for BOS.')
 
 
 #%% use dialate function to change size of dots
-dotSize = 2
+dotSize = 1
 kernel = np.ones((dotSize,dotSize),np.uint8)
 Ye = cv2.dilate(Y,kernel,iterations = 1)
 fig2=plt.figure()
@@ -42,12 +42,14 @@ plt.imshow(Ye, cmap='gray')
 plt.title('dot pattern for BOS.  dot size = '+str(dotSize)+' px, percent coverage = '+str(percentCoverage)+'%')
 
 
-#%% save image
-# include the date in the filename.  figure out how to do that later.
-#from datetime import date
-# today = date.today()
+#------------------------------------------------------------
+# ask user if they would like to save files
+saveChoice = tkMessageBox.askyesno('Save results?','Would you like to save the background?')
+if saveChoice:
+    outputFilename = 'dot_BG_'+ str(dotSize) + 'px_'+str(percentCoverage) +'%_' + time.strftime("%Y-%m-%d") +'.jpg'
+    scipy.misc.imsave(outputFilename, Ye)
+    print('saved image as ' + outputFilename)
+else:
+    print('You have chosen not to save the image')    
 
-filename = 'dot_background_'+ str() + str(dotSize) + 'px_'+str(percentCoverage) +'%.jpg'
-scipy.misc.imsave('background_images/dots/' + filename, Ye)
-output = 'file saved as: '+ filename
-print(output)
+#plt.close()
