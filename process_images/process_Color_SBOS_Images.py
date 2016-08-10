@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 """
 author: Jonathan Gross
+
+DESCRIPTION
+======
 This is modified from processSBOSimages.py.  This script will be used with 
 color S-BOS images.
+
+I haven't updated this one in a little while so I think it would be obsolete, 
+but I don't have any newer file that does this, so I don't want to get rid of 
+it yet.
 """
 
 import numpy as np
