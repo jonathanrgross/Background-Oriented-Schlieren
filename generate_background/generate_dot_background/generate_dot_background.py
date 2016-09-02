@@ -23,7 +23,7 @@ height=1080
 
 y = np.random.rand(height,width)
 # select percent of the space to have dots
-percentCoverage = 20
+percentCoverage = 10
 shift = (percentCoverage-50.)/100.
 print(shift)
 Y = np.around(y+shift)
@@ -35,7 +35,7 @@ plt.title('dot pattern for BOS.')
 
 
 #%% use dialate function to change size of dots
-dotSize = 1
+dotSize = 3
 kernel = np.ones((dotSize,dotSize),np.uint8)
 Ye = cv2.dilate(Y,kernel,iterations = 1)
 fig2=plt.figure()
