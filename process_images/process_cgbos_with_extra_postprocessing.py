@@ -155,7 +155,7 @@ refImg = np.float32(refImg)
 
 #%% add a function to crop the image
 left = 0
-right =width
+right = width
 top = 0
 bottom = height
 
