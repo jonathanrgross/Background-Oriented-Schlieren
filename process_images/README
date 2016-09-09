@@ -1,5 +1,0 @@
-# Mon Aug 1, 2016
-
-I'm just taking notes on the files in this folder.  process_Color_SBOS_Images.py is probably redundant but I technically don't have another file to process bidirectional color schlieren yet, even if that's easy to make, so I'm holding on to it for now.  I'm just making a note of that here.
-
-The folders process_sbos_20160726 and process_dot_bos_20160801 each have a file for S-BOS and dot BOS, respectively.
